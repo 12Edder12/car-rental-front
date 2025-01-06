@@ -1,0 +1,31 @@
+<div class="search-container mat-elevation-z4">
+    <h2>Encuentra tu vuelo ideal</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Ciudad de Origen</mat-label>
+          <mat-icon matPrefix>flight_takeoff</mat-icon>
+          <input matInput formControlName="origin" placeholder="Ej: New York">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Ciudad de Destino</mat-label>
+          <mat-icon matPrefix>flight_land</mat-icon>
+          <input matInput formControlName="destination" placeholder="Ej: London">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Vuelo</mat-label>
+          <mat-icon matPrefix>event</mat-icon>
+          <input matInput [matDatepicker]="picker" formControlName="flightDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit" class="search-button">
+        <mat-icon>search</mat-icon>
+        Buscar Vuelos
+      </button>
+    </form>
+  </div>
