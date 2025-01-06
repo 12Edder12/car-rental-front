@@ -3,9 +3,13 @@
   max-width: 1200px;
 }
 
-.results-container h3 {
+.results-container h2 {
   color: #1a237e;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #1a237e;
 }
 
 table {
