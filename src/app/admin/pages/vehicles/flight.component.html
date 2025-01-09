@@ -1,0 +1,14 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Reserva de Vuelos</h1>
+    <p>Encuentra y reserva tu próximo destino</p>
+  </div>
+
+  <div class="search-section">
+    <app-flight-search (search)="onSearch($event)"></app-flight-search>
+  </div>
+
+  <div class="results-section">
+    <app-flight-results [flights]="flights"></app-flight-results>
+  </div>
+</div>

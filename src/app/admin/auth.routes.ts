@@ -6,8 +6,8 @@ export const authRoutesAdmin: Routes = [
     {
         path: 'vehicles',
         loadComponent: () =>
-          import('../admin/pages/vehicles/vehicles.component').then(
-            (c) => c.VehiclesComponent
+          import('./pages/vehicles/flight.component').then(
+            (c) => c.FlightComponent
           ),
           canActivate: [AuthGuard],
       }, 
