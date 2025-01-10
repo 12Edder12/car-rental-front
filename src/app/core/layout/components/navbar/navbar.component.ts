@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
 
     if (role === 'ADMIN') {
       items = [
-        { title: 'Vuelos', icon: 'flight_land', route: '/vehicles' },
+        { title: 'Vuelos', icon: 'flight_land', route: '/flights' },
         {
           title: 'Mis Reservaciones',
           icon: 'flight_takeoff',
