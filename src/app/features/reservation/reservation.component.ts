@@ -13,7 +13,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Flight } from 'app/admin/pages/flights/models/flight.model';
 import { IPrice } from './models/prices';
 import { ReservationService } from './services/reservation.service';
@@ -49,6 +49,7 @@ export class ReservationComponent implements OnInit {
   private readonly notificationSrv: NotificationService =
     inject(NotificationService);
   private readonly authSrv: AuthService = inject(AuthService);
+  private readonly router: Router = inject(Router);
 
   protected flight: Flight | null = null;
   protected total: number = 0;
@@ -126,7 +127,7 @@ export class ReservationComponent implements OnInit {
         FlightId: this.flight?.Id!,
         Seats: +this.seatForm.get('seatsAmount')?.value!,
         Total: this.total,
-        UserId: 2,
+        UserId: this.loggedUser?.GetUserResult?.Id!,
       };
 
       this.reservationSrv.createReservation(flightDeatil).subscribe({
@@ -135,6 +136,7 @@ export class ReservationComponent implements OnInit {
             'Vuelo Reservado',
             StateNotification.SUCCESS
           );
+          this.router.navigate(['/my-reservations']);
         },
         error: () => {
           this.notificationSrv.activateNotification(
