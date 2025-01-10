@@ -51,21 +51,18 @@ export class LoginFormComponent {
     event.stopPropagation();
   }
 
-  onSubmit(): void {
+   onSubmit(): void {
     const loginData: ILoginRequest = this.loginForm.value;
 
     this.loginSrv.login(loginData).subscribe({
       next: (res) => {
-        this.authSrv.saveLoggedUserInLocalStorage(res);
-        const { role } = this.authSrv.getLoggedUserFromLocalStorage();
-
-        if (role === 'ADMIN') {
-          // Aqui redireccionar a la ruta que corresponda
+        if (res.GetUserResult) {
+          this.authSrv.saveLoggedUserInLocalStorage(res);
+          // Como todo es admin, siempre redirigimos a /admin
           this.router.navigate(['/admin']);
-        }
-
-        if (role === 'CLIENT') {
-          this.router.navigate(['/catalog']);
+        } else {
+          console.error('Credenciales inválidas');
+          // Aquí puedes manejar el error de login inválido
         }
       },
       error: (err) => {

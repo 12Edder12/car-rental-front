@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authSrv.loggedInUser$.subscribe((user) => {
-      this.isLogged = !!user && !!user.token;
+      this.isLogged = !!user && !!user.GetUserResult?.Status;
     });
   }
 }

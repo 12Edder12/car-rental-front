@@ -11,13 +11,9 @@ export class RoleGuard implements CanActivate {
   private readonly authSrv: AuthService = inject(AuthService);
   private readonly router: Router = inject(Router);
 
-  private readonly loggedUser: ILoginResponse =
-    this.authSrv.getLoggedUserFromLocalStorage();
-
   canActivate(): boolean {
-    const role: string = this.loggedUser.role;
-
-    if (role === 'ADMIN') {
+    const loggedUser = this.authSrv.getLoggedUserFromLocalStorage();
+    if (loggedUser?.GetUserResult?.role === 'ADMIN') {
       return true;
     } else {
       this.router.navigate(['/catalog']);
