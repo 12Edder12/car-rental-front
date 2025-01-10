@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { Flight } from '../../models/flight.model';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-flight-results',
@@ -10,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './flight-results.component.html',
   styleUrls: ['./flight-results.component.css']

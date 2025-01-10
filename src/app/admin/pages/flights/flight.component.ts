@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FlightService } from './services/flight.service';
 import { Flight } from './models/flight.model';
 import { MatTableModule } from '@angular/material/table';
@@ -28,6 +28,7 @@ const MATERIAL = [
 })
 export class FlightComponent implements OnInit {
   flights: Flight[] = [];
+  allFlights: Flight[] = []; // Lista completa de vuelos
   
   constructor(private flightService: FlightService) {}
 
@@ -38,11 +39,24 @@ export class FlightComponent implements OnInit {
 
   loadFlights(): void {
     this.flightService.getFlights().subscribe(flights => {
+      console.log('Respuesta de getFlights:', flights); // Imprimir JSON en la consola
+      this.allFlights = flights;
       this.flights = flights;
     });
   }
 
-  onSearch(flights: Flight[]): void {
-    this.flights = flights;
+  onSearch(filters: { origin: string, destination: string, flightDate: string }): void {
+    const { origin, destination, flightDate } = filters;
+    const searchDateStr = flightDate ? new Date(flightDate).toISOString().split('T')[0] : '';
+
+    this.flights = this.allFlights.filter(flight => {
+      const flightDateStr = new Date(flight.FlightDate).toISOString().split('T')[0];
+
+      return (!origin || flight.Origin.toLowerCase().includes(origin.toLowerCase())) &&
+             (!destination || flight.Destination.toLowerCase().includes(destination.toLowerCase())) &&
+             (!searchDateStr || flightDateStr === searchDateStr);
+    });
+
+    console.log('Respuesta de searchFlights:', this.flights); // Imprimir JSON en la consola
   }
 }
