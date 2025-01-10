@@ -15,11 +15,4 @@ export const authRoutes: Routes = [
         (c) => c.RegisterComponent
       ),
   },
-  {
-    path: 'password-recovery',
-    loadComponent: () =>
-      import('@core/auth/pages/password-recovery/password-recovery.component').then(
-        (c) => c.PasswordRecoveryComponent
-      ),
-  },
 ];
