@@ -1,0 +1,197 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Flight Details Card -->
+  <mat-card class="mb-6" *ngIf="flight">
+    <mat-card-header>
+      <mat-card-title class="text-2xl mb-4">Detalles del Vuelo</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flight-route flex items-center justify-between">
+          <div class="text-center">
+            <div class="text-3xl font-bold">{{ flight.Origin }}</div>
+            <div class="text-gray-600">Origen</div>
+          </div>
+          <div class="flight-line relative px-8">
+            <mat-icon class="text-blue-500">flight</mat-icon>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold">{{ flight.Destination }}</div>
+            <div class="text-gray-600">Destino</div>
+          </div>
+        </div>
+        <div class="flight-info space-y-4">
+          <div>
+            <span class="text-gray-600">Fecha:</span>
+            <span class="ml-2 font-medium">{{
+              flight.FlightDate | date : "fullDate"
+            }}</span>
+          </div>
+          <div>
+            <span class="text-gray-600">Estado:</span>
+            <span
+              class="ml-2 font-medium"
+              [ngClass]="{
+                'text-green-600': flight.Status === 'Activo',
+                'text-red-600': flight.Status === 'Cancelado',
+                'text-yellow-600': flight.Status === 'En curso'
+              }"
+              >{{ flight.Status }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Reservation Form -->
+  <mat-stepper linear #stepper>
+    <!-- Passenger Information Step -->
+    <mat-step [stepControl]="passengerForm">
+      <form [formGroup]="passengerForm" class="flex flex-col items-center">
+        <ng-template matStepLabel>Información del Pasajero</ng-template>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full max-w-4xl"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="firstName" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="lastName" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="email" required type="email" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="phone" required />
+          </mat-form-field>
+        </div>
+        <div class="mt-4">
+          <button mat-fab extended class="submit-form-btn" matStepperNext>
+            Siguiente
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Seat Selection Step -->
+    <mat-step [stepControl]="seatForm">
+      <form [formGroup]="seatForm" class="flex flex-col items-center">
+        <ng-template matStepLabel>Selección de Asientos</ng-template>
+        <div class="mt-4 w-full max-w-4xl flex flex-col items-center space-y-4">
+          <!-- Class Selection -->
+          <mat-form-field appearance="outline" class="w-full max-w-md">
+            <mat-label>Clase</mat-label>
+            <mat-select formControlName="seatClass" required>
+              <mat-option *ngFor="let price of prices" [value]="price.Class">
+                {{ price.Class == "FIRST" ? "Primera Clase" : "Economico" }} -
+                ${{ price.Total }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Number of Seats -->
+          <mat-form-field appearance="outline" class="w-full max-w-md">
+            <mat-label>Cantidad de Asientos</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="seatsAmount"
+              required
+              min="1"
+              max="10"
+            />
+            <mat-hint>Máximo 10 asientos por reservación</mat-hint>
+          </mat-form-field>
+
+          <!-- Price Summary -->
+          <mat-card
+            *ngIf="seatForm.valid && total > 0"
+            class="w-full max-w-md p-4"
+          >
+            <mat-card-content>
+              <div class="flex justify-between items-center">
+                <span class="text-lg">Total:</span>
+                <span class="text-xl font-bold">${{ total }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="mt-6 flex gap-4">
+          <button mat-fab extended class="cancel-form-btn" matStepperPrevious>
+            Volver
+          </button>
+          <button mat-fab extended class="submit-form-btn" matStepperNext>
+            Siguiente
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Confirmation Step -->
+    <mat-step>
+      <ng-template matStepLabel>Confirmación</ng-template>
+      <div class="mt-4 flex flex-col items-center">
+        <div class="max-w-2xl w-full">
+          <h3 class="text-xl font-semibold mb-4 text-center">
+            Revisa tu Reservación
+          </h3>
+          <mat-card class="w-full p-6">
+            <div class="space-y-4">
+              <div *ngIf="passengerForm.valid">
+                <p>
+                  <span class="font-medium">Pasajero:</span>
+                  {{ passengerForm.get("firstName")?.value }}
+                  {{ passengerForm.get("lastName")?.value }}
+                </p>
+                <p>
+                  <span class="font-medium">Correo Electrónico:</span>
+                  {{ passengerForm.get("email")?.value }}
+                </p>
+                <p>
+                  <span class="font-medium">Teléfono:</span>
+                  {{ passengerForm.get("phone")?.value }}
+                </p>
+              </div>
+              <div *ngIf="seatForm.valid">
+                <!-- <p>
+                  <span class="font-medium">Clase:</span>
+                  {{ seatForm.get("seatClass").value ? getClassName(seatForm.get("seatClass").value) : '' }}
+                </p> -->
+                <p>
+                  <span class="font-medium">Cantidad de Asientos:</span>
+                  {{ seatForm.get("seatsAmount")?.value }}
+                </p>
+                <p>
+                  <span class="font-medium">Total a Pagar:</span>
+                  ${{ total }}
+                </p>
+              </div>
+            </div>
+          </mat-card>
+          <div class="mt-6 flex justify-center gap-4">
+            <button mat-fab extended class="cancel-form-btn" matStepperPrevious>
+              Volver
+            </button>
+            <button
+              mat-fab
+              extended
+              class="submit-form-btn"
+              (click)="submitReservation()"
+              [disabled]="!canSubmit"
+            >
+              Confirmar Reservación
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
