@@ -40,32 +40,12 @@ export class NavbarComponent implements OnInit {
 
     if (role === 'ADMIN') {
       items = [
-        { title: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-        { title: 'Vehiculos', icon: 'directions_car', route: '/vehicles' },
+        { title: 'Vuelos', icon: 'flight_land', route: '/vehicles' },
         {
-          title: 'Tipos Vehiculos',
-          icon: 'directions_car',
-          route: '/types-vehicles',
+          title: 'Mis Reservaciones',
+          icon: 'flight_takeoff',
+          route: '/my-reservations',
         },
-        { title: 'Alquileres', icon: 'person_pin', route: '/settings' },
-        { title: 'Facturas', icon: 'note_add', route: '/bills' },
-        { title: 'Usuarios', icon: 'group', route: '/users' },
-      ];
-    }
-
-    if (role === 'EMPLOYEE') {
-      console.log('ADMIN');
-      items = [
-        { title: 'Alquileres', icon: 'person_pin', route: '/rental-status' },
-        { title: 'Facturas', icon: 'note_add', route: '/bills' },
-        { title: 'Devoluciones', icon: 'assignment_return', route: '/returns' },
-      ];
-    }
-
-    if (role === 'CLIENT') {
-      items = [
-        { title: 'Vehiculos', icon: 'directions_car', route: '/catalog' },
-        { title: 'Alquileres', icon: 'person_pin', route: '/rental-list' },
       ];
     }
 
