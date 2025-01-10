@@ -29,8 +29,10 @@ export class NavbarComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const { role } = this.authSrv.getLoggedUserFromLocalStorage();
-    this.navigationItems = this.itemsPerRoleChecker(role);
+    const loggedUser = this.authSrv.getLoggedUserFromLocalStorage();
+    if (loggedUser?.GetUserResult?.role) {
+      this.navigationItems = this.itemsPerRoleChecker(loggedUser.GetUserResult.role);
+    }
   }
 
   private itemsPerRoleChecker(role: string): NavigationItem[] {

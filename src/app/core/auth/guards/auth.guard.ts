@@ -11,11 +11,9 @@ export class AuthGuard implements CanActivate {
   private readonly router: Router = inject(Router);
   private readonly authSrv: AuthService = inject(AuthService);
 
-  private readonly loggedUser: ILoginResponse =
-    this.authSrv.getLoggedUserFromLocalStorage();
-
   canActivate(): boolean {
-    if (this.loggedUser.token) {
+    const loggedUser = this.authSrv.getLoggedUserFromLocalStorage();
+    if (loggedUser?.GetUserResult?.Status) {
       return true;
     } else {
       this.router.navigate(['/login']);
