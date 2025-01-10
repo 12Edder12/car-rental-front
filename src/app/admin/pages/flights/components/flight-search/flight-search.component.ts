@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class FlightSearchComponent {
   @Output() search = new EventEmitter<{ origin: string, destination: string, flightDate: string }>();
+  @Output() clear = new EventEmitter<void>();
   searchForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -39,5 +40,10 @@ export class FlightSearchComponent {
   onSearch(): void {
     const { origin, destination, flightDate } = this.searchForm.value;
     this.search.emit({ origin, destination, flightDate });
+  }
+
+  onClear(): void {
+    this.searchForm.reset();
+    this.clear.emit();
   }
 }

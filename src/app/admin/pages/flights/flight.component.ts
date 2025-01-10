@@ -33,13 +33,12 @@ export class FlightComponent implements OnInit {
   constructor(private flightService: FlightService) {}
 
   ngOnInit(): void {
-    // Cargar todos los vuelos al inicio
+    
     this.loadFlights();
   }
 
   loadFlights(): void {
     this.flightService.getFlights().subscribe(flights => {
-      console.log('Respuesta de getFlights:', flights); // Imprimir JSON en la consola
       this.allFlights = flights;
       this.flights = flights;
     });
@@ -57,6 +56,9 @@ export class FlightComponent implements OnInit {
              (!searchDateStr || flightDateStr === searchDateStr);
     });
 
-    console.log('Respuesta de searchFlights:', this.flights); // Imprimir JSON en la consola
+  }
+
+  onClear(): void {
+    this.flights = this.allFlights;
   }
 }
