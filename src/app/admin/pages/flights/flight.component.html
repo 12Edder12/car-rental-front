@@ -5,7 +5,7 @@
   </div>
 
   <div class="search-section">
-    <app-flight-search (search)="onSearch($event)"></app-flight-search>
+    <app-flight-search (search)="onSearch($event)" (clear)="onClear()"></app-flight-search>
   </div>
 
   <div class="results-section">
