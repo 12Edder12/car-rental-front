@@ -86,7 +86,7 @@ export class MyReservationsComponent implements OnInit {
           'Reserva cancelada exitosamente',
           StateNotification.SUCCESS
         );
-        this.router.navigate(['/vehicles']);
+        this.router.navigate(['/flights']);
       },
       error: () => {
         this.notificationSrv.activateNotification(
