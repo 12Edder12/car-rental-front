@@ -22,9 +22,7 @@ export class LoginComponent implements OnInit {
     const loggedUser = this.authSrv.getLoggedUserFromLocalStorage();
     
     if (loggedUser?.GetUserResult?.role === 'ADMIN') {
-      this.router.navigate(['/admin']);
-    } else if (loggedUser?.GetUserResult?.role === 'CLIENT') {
-      this.router.navigate(['/catalog']);
+      this.router.navigate(['/vehicles']);
     }
   }
 }

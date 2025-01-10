@@ -59,7 +59,7 @@ export class LoginFormComponent {
         if (res.GetUserResult) {
           this.authSrv.saveLoggedUserInLocalStorage(res);
           // Como todo es admin, siempre redirigimos a /admin
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/vehicles']);
         } else {
           console.error('Credenciales inválidas');
           // Aquí puedes manejar el error de login inválido

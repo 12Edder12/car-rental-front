@@ -2,33 +2,61 @@
   <h2>Encuentra tu vuelo ideal</h2>
   <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
     <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad de Origen</mat-label>
-        <mat-icon matPrefix>flight_takeoff</mat-icon>
-        <input matInput formControlName="origin" placeholder="Ej: New York">
-      </mat-form-field>
+      <div class="flex flex-col">
+        <label>Ciudad de Origen</label>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>flight_takeoff</mat-icon>
+          <input matInput formControlName="origin" placeholder="Ej: New York" />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad de Destino</mat-label>
-        <mat-icon matPrefix>flight_land</mat-icon>
-        <input matInput formControlName="destination" placeholder="Ej: London">
-      </mat-form-field>
+      <div class="flex flex-col">
+        <label>Ciudad de Destino</label>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>flight_land</mat-icon>
+          <input
+            matInput
+            formControlName="destination"
+            placeholder="Ej: London"
+          />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Vuelo</mat-label>
-        <mat-icon matPrefix>event</mat-icon>
-        <input matInput [matDatepicker]="picker" formControlName="flightDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      <div class="flex flex-col">
+        <label>Fecha de Vuelo</label>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>event</mat-icon>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="flightDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="button-row">
-      <button mat-raised-button color="primary" type="submit" class="search-button">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="search-button"
+      >
         <mat-icon>search</mat-icon>
         Buscar Vuelos
       </button>
-      <button mat-raised-button color="warn" type="button" class="clear-button" (click)="onClear()">
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        class="clear-button"
+        (click)="onClear()"
+      >
         <mat-icon>clear</mat-icon>
         Limpiar
       </button>

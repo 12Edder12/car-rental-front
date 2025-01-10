@@ -26,4 +26,8 @@ export class ReservationService {
     console.log(reservation);
     return this.http.post<boolean>(`${this.baseUrl}`, reservation);
   }
+
+  cancelReservation(flightId: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}/${flightId}`);
+  }
 }

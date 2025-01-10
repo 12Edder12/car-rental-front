@@ -20,6 +20,8 @@ import { ReservationService } from './services/reservation.service';
 import { IReservationPost } from './models/reservation';
 import { NotificationService } from '@shared/services/notification.service';
 import { StateNotification } from '@shared/enums/state-notification';
+import { ILoginResponse } from '@core/auth/pages/login/models/login.interface';
+import { AuthService } from '@core/auth/services/auth.service';
 
 @Component({
   selector: 'app-reservation',
@@ -46,10 +48,12 @@ export class ReservationComponent implements OnInit {
     inject(ReservationService);
   private readonly notificationSrv: NotificationService =
     inject(NotificationService);
+  private readonly authSrv: AuthService = inject(AuthService);
 
   protected flight: Flight | null = null;
   protected total: number = 0;
   protected prices: IPrice[] = [];
+  protected loggedUser: ILoginResponse | null = null;
 
   protected passengerForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -76,6 +80,16 @@ export class ReservationComponent implements OnInit {
     this.seatForm.valueChanges.subscribe(() => {
       this.calculateTotal();
     });
+
+    this.loggedUser = this.authSrv.getLoggedUserFromLocalStorage();
+    if (this.loggedUser?.GetUserResult) {
+      this.passengerForm.patchValue({
+        firstName: this.loggedUser.GetUserResult.Name,
+        lastName: this.loggedUser.GetUserResult.LastName,
+        email: this.loggedUser.GetUserResult.Email,
+        phone: this.loggedUser.GetUserResult.Phone,
+      });
+    }
   }
 
   private calculateTotal() {
