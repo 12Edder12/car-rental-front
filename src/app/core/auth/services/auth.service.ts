@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ILoginResponse } from '../pages/login/models/login.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { auth } from '../../../../firebase-config';
-import { sendPasswordResetEmail } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +25,5 @@ export class AuthService {
   removeLoggedUserFromLocalStorage(): void {
     localStorage.removeItem('loggedUser');
     this.loggedInUserSubject.next(null);
-  }
-  
-  sendPasswordResetEmail(email: string) {
-    return sendPasswordResetEmail(auth, email);
   }
 }

@@ -1,0 +1,24 @@
+.flight-line {
+  border-top: 2px dashed #3b82f6;
+  width: 100%;
+  position: relative;
+}
+
+.flight-line mat-icon {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+::ng-deep .mat-stepper-horizontal {
+  background-color: transparent !important;
+}
+
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-step-header {
+  background-color: transparent !important;
+}

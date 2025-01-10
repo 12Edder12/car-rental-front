@@ -1,12 +1,12 @@
 <form [formGroup]="this.loginForm" (ngSubmit)="this.onSubmit()">
   <div class="flex flex-col boder border-black">
-    <label class="font-medium text-sm text-redViolet"
+    <label class="font-medium text-sm text-blueViolet"
       >Ingresa tu correo electrónico</label
     >
     <mat-form-field appearance="outline">
       <input matInput formControlName="email" placeholder="Correo" />
     </mat-form-field>
-    <label class="font-medium text-sm text-redViolet"
+    <label class="font-medium text-sm text-blueViolet"
       >Ingresa tu contraseña</label
     >
     <mat-form-field appearance="outline">
@@ -30,12 +30,12 @@
   </div>
   <div class="flex flex-col justify-center gap-4">
     <div class="flex flex-row justify-between">
-      <a class="text-erieBlack hover:text-redViolet text-sm"
+    <!--  <a class="text-erieBlack hover:text-redViolet text-sm"
       [routerLink]="['/password-recovery']"
         >¿Olvidaste tu contraseña?</a
-      >
+      > --> 
       <a
-        class="text-erieBlack hover:text-redViolet text-sm"
+        class="text-erieBlack hover:text-blueViolet text-sm"
         [routerLink]="['/register']"
         >Registrarse</a
       >

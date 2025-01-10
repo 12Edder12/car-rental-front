@@ -3,8 +3,8 @@ import { authRoutes } from '@core/auth/auth.routes';
 import { catalogRoutes } from '@features/catalog/catalog.routes';
 import { vehicleDeatilRoutes } from '@features/vehicle-detail/vehicle-detail.routes';
 import { authRoutesAdmin } from './admin/auth.routes';
-import { rentRoutes } from '@features/rent/rent.routes';
 import { returnRoutes } from '@features/returns/returns.routes';
+import { reservationRoutes } from '@features/reservation/reservation.routes';
 
 export const routes: Routes = [
   ...authRoutes,
@@ -12,7 +12,7 @@ export const routes: Routes = [
   ...returnRoutes,
   ...vehicleDeatilRoutes,
   ...authRoutesAdmin,
-  ...rentRoutes,
+  ...reservationRoutes,
   {
     path: '',
     redirectTo: '/login',

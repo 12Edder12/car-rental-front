@@ -12,7 +12,7 @@
       <li>
         <a
           [routerLink]="[item.route]"
-          class="text-lg text-softWhite flex items-center hover:text-redViolet transition-all duration-300 ease-in-out"
+          class="text-lg text-softWhite flex items-center hover:text-sunsetOrange transition-all duration-300 ease-in-out"
         >
           <mat-icon class="text-base">{{ item.icon }}</mat-icon>
           {{ item.title }}
@@ -23,7 +23,7 @@
   </div>
   <a
     (click)="this.logout()"
-    class="text-lg text-softWhite flex items-center hover:text-redViolet transition-all duration-300 ease-in-out cursor-pointer"
+    class="text-lg text-softWhite flex items-center hover:text-sunsetOrange transition-all duration-300 ease-in-out cursor-pointer"
   >
     <mat-icon class="text-base">{{ this.logoutItem.icon }}</mat-icon>
     {{ this.logoutItem.title }}

@@ -1,24 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from 'environments/environment.development';
 import { IRegisterRequest } from '../models/register.interface';
 import { Observable } from 'rxjs';
-import { IUser } from '@core/auth/models/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  private baseUrl: string = environment.BASE_URL;
   private readonly http: HttpClient = inject(HttpClient);
+  private baseUrl: string = 'https://serviciosdistribuidas.azurewebsites.net/UserService.svc/api'; 
 
-  register(registerData: IRegisterRequest): Observable<IUser> {
-    const registerUrl: string = `${this.baseUrl}/users`;
-    const response: Observable<IUser> = this.http.post<IUser>(
-      registerUrl,
-      registerData
-    );
-
-    return response;
+  register(registerData: IRegisterRequest): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+ 
+    return this.http.post<any>(this.baseUrl, registerData, { headers });
   }
 }

@@ -1,0 +1,89 @@
+.results-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results-container h2 {
+  color: #1a237e;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #1a237e;
+}
+
+
+table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-header-cell {
+  background: #1a237e;
+  color: white;
+  font-size: 1rem;
+}
+
+.mat-row:hover {
+  background: #f5f5f5;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.in_course {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.completed {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.canceled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-results mat-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.reserve-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-text {
+  font-size: 0.9rem;
+}
+
+.mat-column-actions {
+  width: 120px;
+  text-align: center;
+}
