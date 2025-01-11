@@ -18,7 +18,7 @@ export class ReservationService {
 
   getFlightPrices(flightId: number): Observable<IPrice[]> {
     return this.http.get<IPrice[]>(
-      `https://serviciosdistribuidas.azurewebsites.net/FlightPriceService.svc/api/${flightId}`
+      `https://wcfservices20250110203018.azurewebsites.net/FlightPriceService.svc/api/${flightId}`
     );
   }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
   private readonly http: HttpClient = inject(HttpClient);
-  private baseUrl: string = 'https://serviciosdistribuidas.azurewebsites.net/UserService.svc/api'; 
+  private baseUrl: string = 'https://wcfservices20250110203018.azurewebsites.net/UserService.svc/api'; 
 
   register(registerData: IRegisterRequest): Observable<any> {
     const headers = new HttpHeaders({

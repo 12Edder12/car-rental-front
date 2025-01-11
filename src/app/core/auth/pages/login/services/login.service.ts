@@ -13,7 +13,7 @@ export class LoginService {
   private readonly authSrv: AuthService = inject(AuthService);
 
   login(loginData: ILoginRequest): Observable<ILoginResponse> {
-    const loginUrl: string = 'https://serviciosdistribuidas.azurewebsites.net/UserService.svc/api/login';
+    const loginUrl: string = 'https://wcfservices20250110203018.azurewebsites.net/UserService.svc/api/login';
     return this.http.post<ILoginResponse>(loginUrl, loginData).pipe(
       map(response => {
         if (response.GetUserResult) {
