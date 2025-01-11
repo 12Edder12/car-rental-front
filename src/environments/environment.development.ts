@@ -1,3 +1,3 @@
 export const environment = {
-  BASE_URL: 'https://serviciosdistribuidas.azurewebsites.net',
+  BASE_URL: 'https://wcfservices20250110203018.azurewebsites.net',
 };
